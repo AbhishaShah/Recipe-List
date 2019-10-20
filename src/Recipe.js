@@ -15,6 +15,25 @@ class Recipe extends Component {
   }
 }
 
+Recipe.propTypes = {
+  name: (props, PropName) =>
+    typeof props[PropName] !== "string"
+      ? new Error("Name must be a string")
+      : props[PropName].length > 20
+      ? new Error(`name is over 20 characters`)
+      : null,
+  ingredients: PropTypes.array.required,
+  steps: PropTypes.array,
+  totalSteps: PropTypes.number
+};
+
+Recipe.defaultProps = {
+  name: "Recipes",
+  Ingredients: [],
+  steps: [],
+  totalSteps: 0
+};
+
 export default Recipe;
 
 function IngredientList(props) {
